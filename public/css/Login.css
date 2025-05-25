@@ -38,6 +38,7 @@ html {
     height: auto;
     margin-bottom: 1rem;
     border-radius: 20px;
+    box-shadow: 5px 5px 2px lightgrey;
 }
 
 .left h1 {
@@ -105,7 +106,7 @@ form span {
     color: #444;
 }
 
-input[type="text"],
+input[type="name"],
 input[type="email"],
 input[type="password"] {
     padding: 0.75rem;
@@ -162,51 +163,6 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
     background-color: #b36400;
-}
-
-.divider {
-    text-align: center;
-    margin: 1rem 0;
-    font-size: 0.9rem;
-    color: #888;
-    position: relative;
-}
-
-.divider::before,
-.divider::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 30%;
-    height: 1px;
-    background: #ccc;
-}
-
-.divider::before {
-    left: 0;
-}
-
-.divider::after {
-    right: 0;
-}
-
-.google-btn {
-    margin-top: 0.5rem;
-    flex-direction: row;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.6rem;
-    border: 1px solid #ccc;
-    padding: 0.6rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: 500;
-    transition: background-color 0.3s;
-}
-
-.google-btn:hover {
-    background-color: #f2f2f2;
 }
 
 @media (max-width: 768px) {

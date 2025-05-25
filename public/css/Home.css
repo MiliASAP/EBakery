@@ -1,0 +1,497 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo>img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 3px;
+    transform: translateY(-3.5px);
+}
+
+.logo>h3 {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-weight: 900;
+    color: brown;
+}
+
+.navigation-el {
+    display: flex;
+    gap: 30px;
+
+}
+
+.navigation-el a {
+    text-decoration: none;
+    text-align: center;
+    color: gray;
+    padding: 14px 16px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navigation-el a:hover {
+    color: black;
+    transform: scale(1.25);
+
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icons svg {
+    height: 20px;
+    width: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icons svg:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+}
+
+.under-nav {
+    display: flex;
+    background-color: #f7f2e8;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.under-nav>article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 700px;
+    margin-right: 10px;
+    padding-left: 2%;
+    text-align: center;
+}
+
+.under-nav>article>h1 {
+    font-size: 70px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    color: #78350F;
+}
+
+.under-nav>article>span {
+    margin-bottom: 50px;
+    color: grey;
+}
+
+.under-nav>article>button {
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: rgb(215, 140, 0);
+    border-style: hidden;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    transition: transform 0.2s ease-in-out;
+    font-size: 17px;
+}
+
+.under-nav>article>button:hover {
+    transform: scale(1.25);
+}
+
+
+.under-nav>img {
+    width: 400px;
+    height: auto;
+    border-radius: 10px;
+    vertical-align: middle;
+    margin-left: 2%;
+    margin-right: 2%;
+    box-shadow: 5px 5px 2px lightgrey;
+}
+
+.filters {
+    display: flex;
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: 100px;
+    gap: 40px;
+    justify-content: center;
+}
+
+.filters>button {
+    text-align: center;
+    font-size: 17px;
+    color: gray;
+    padding: 14px 16px;
+    transition: transform 0.2s ease-in-out;
+    font-family: 'Roboto', sans-serif;
+    border: none;
+    background: none;
+    display: inline;
+    margin: 0;
+    padding: 0;
+
+}
+
+.filters>button:hover {
+    color: black;
+    transform: scale(1.25);
+}
+
+.promotion-info {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.promotion-info svg {
+    height: 35px;
+    width: 35px;
+    filter: invert(38%) sepia(100%) saturate(746%) hue-rotate(10deg);
+}
+
+.span-body {
+    color: grey;
+    font-size: 15px;
+}
+
+.span-head {
+    font-size: large;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 7px;
+}
+
+.ingredients,
+.delivery,
+.freshness {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter {
+    display: flex;
+    background-color: #f7f2e8;
+    flex-direction: column;
+    align-items: center;
+}
+
+.newsletter>h3,
+span,
+.insert {
+    margin: 10px;
+}
+
+.newsletter>h3 {
+    margin-top: 35px;
+    font-size: 25px;
+    color: #78350F;
+}
+
+.newsletter>.insert {
+    margin-bottom: 35px;
+}
+
+.newsletter>span {
+    font-size: 13px;
+    color: grey;
+}
+
+.insert>input {
+    width: 200px;
+    height: 30px;
+    border-radius: 30px;
+    border: solid 1px grey;
+    margin-right: 10px;
+    padding-left: 10px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.insert>button {
+    background-color: rgb(215, 140, 0);
+    color: white;
+    width: 90px;
+    height: 30px;
+    border-radius: 30px;
+    border: none;
+    font-family: 'Roboto', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.insert>button:hover {
+    background-color: #b36400;
+}
+
+footer {
+    background-color: #78350F;
+    display: flex;
+    flex-direction: column;
+}
+
+.Info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: solid 1px #843e15;
+    gap: 2px;
+    border-top: #78350F 5px solid;
+}
+
+.Company-Info {
+    display: flex;
+    flex-direction: column;
+}
+
+.head,
+.Social-Media>span,
+.Contact>span {
+    color: white;
+    font-weight: 900;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.Contact>ul {
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.Contact>ul li {
+    margin-bottom: 5px;
+}
+
+.main,
+.Contact>ul {
+    font-size: 11px;
+    margin: 0;
+    color: #FDE68A;
+}
+
+.Social-Media {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.fb {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.insta {
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+    margin-left: -2px;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.pin {
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+    margin-top: 4px;
+    color: #FDE68A;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.svgs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.rights {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f7f2e8;
+    font-size: 8px;
+    margin: 10px;
+}
+
+
+
+@media (max-width: 768px) {
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .navigation-el {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+
+    .navigation-el a {
+        padding: 10px;
+        width: 100%;
+        text-align: center;
+
+    }
+
+    .logo {
+        margin-bottom: 30px;
+        border-bottom: solid 1px black;
+    }
+
+    .icons {
+        margin-top: 10px;
+    }
+
+    .under-nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px 10px;
+    }
+
+    .under-nav>article {
+        height: auto;
+        margin-right: 0;
+        padding-left: 0;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .under-nav>article>h1 {
+        font-size: 40px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+
+    .under-nav>img {
+        width: 80%;
+        height: auto;
+        margin-left: 2%;
+        padding-right: 0;
+        border-radius: 10px;
+    }
+
+    .filters {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        height: auto;
+        padding: 20px;
+    }
+
+    .promotion-info {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .ingredients,
+    .delivery,
+    .freshness {
+        width: 100%;
+        align-items: center;
+    }
+
+    .newsletter {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .newsletter>h3 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .newsletter>span {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .insert {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .insert>input {
+        width: 80%;
+    }
+
+    .insert>button {
+        width: 50%;
+    }
+
+    footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .Info {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .Company-Info,
+    .Social-Media,
+    .Contact {
+        align-items: center;
+    }
+
+    .Social-Media {
+        align-items: center;
+    }
+
+    .svgs {
+        justify-content: center;
+        gap: 15px;
+        margin: 10px 0;
+    }
+
+    .rights {
+        font-size: 10px;
+        text-align: center;
+        margin: 10px;
+    }
+
+}

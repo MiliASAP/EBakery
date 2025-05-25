@@ -1,4 +1,4 @@
-version: '4'
+version: '3.9'
 
 services:
   web:
@@ -9,8 +9,6 @@ services:
       - "8080:80"
     volumes:
       - .:/app/
-    links:
-      - php
 
   php:
     build:
@@ -18,3 +16,28 @@ services:
       dockerfile: docker/php/Dockerfile
     volumes:
       - .:/app/
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ebakery
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: ebakery
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: michal.bohun22@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+
+volumes:
+  postgres_data:

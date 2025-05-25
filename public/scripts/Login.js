@@ -26,23 +26,5 @@ document.addEventListener("DOMContentLoaded", function () {
         submitButton.textContent = "Zaloguj się";
     });
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const isRegistering = registerTab.classList.contains("active");
 
-        if (isRegistering) {
-            const name = nameInput.value.trim();
-            const password = form.querySelector('input[type="password"]').value;
-            const repeat = repeatPasswordInput.value;
-
-            if (!name || password !== repeat) {
-                alert("Upewnij się, że pola są poprawnie wypełnione i hasła się zgadzają.");
-                return;
-            }
-
-            console.log("Rejestracja:", name);
-        } else {
-            console.log("Logowanie");
-        }
-    });
 });
