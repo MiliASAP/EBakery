@@ -2,12 +2,16 @@
 
 require 'Routing.php';
 
-$path = trim($_SERVER['REQUEST_URI'],'/');
-$path = parse_url($path,PHP_URL_PATH);
+$path = trim($_SERVER['REQUEST_URI'], '/');
+$path = parse_url($path, PHP_URL_PATH);
 
-Routing::get('','DefaultController');
-Routing::get('homePage','DefaultController');
-Routing::post('login','SecurityController');
+Routing::get('', 'DefaultController');
+Routing::get('homePage', 'DefaultController');
+Routing::post('login', 'SecurityController');
+Routing::get('cart', 'DefaultController');
+Routing::get('more', 'DefaultController');
+Routing::post('cart/add', 'CartController');
+
 
 Routing::run($path);
 

@@ -1,7 +1,5 @@
 <?php
 
-use Dom\Attr;
-
 require_once 'config.php';
 class Database
 {

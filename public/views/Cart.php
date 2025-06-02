@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart</title>
-    <script src="../scripts/Cart.js"></script>
-    <link rel="stylesheet" href="../css/Cart.css">
+    <script src="public/scripts/Cart.js"></script>
+    <link rel="stylesheet" href="public/css/Cart.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
@@ -16,12 +16,11 @@
 <body>
     <nav class="navigation">
         <div class="logo">
-            <img src="../images/bread-logo.png" alt="" class="bread-logo">
+            <img src="public/images/bread-logo.png" alt="" class="bread-logo">
             <h3>EBakery</h3>
         </div>
         <div class="navigation-el">
-            <a href="">Strona główna</a>
-            <a href="">Produkty</a>
+            <a href="http://localhost:8080/homePage">Strona główna</a>
             <a href="">O nas</a>
             <a href="">Kontakt</a>
         </div>
@@ -63,70 +62,52 @@
     <main class="cart-container">
         <section class="cart-items">
             <h2>Twój Koszyk</h2>
-            <p class="cart-subtitle">3 produkty</p>
-
-            <div class="cart-item">
-                <img src="bread.jpg" alt="Chleb Wiejski" />
-                <div class="item-info">
-                    <h3>Chleb Wiejski</h3>
-                    <p>500g</p>
-                </div>
-                <div class="item-qty">
-                    <button>-</button>
-                    <span>2</span>
-                    <button>+</button>
-                </div>
-                <div class="item-price">12,00 zł</div>
-                <button class="delete-btn">🗑️</button>
-            </div>
-
-            <div class="cart-item">
-                <img src="croissant.jpg" alt="Croissant Maślany" />
-                <div class="item-info">
-                    <h3>Croissant Maślany</h3>
-                    <p>80g</p>
-                </div>
-                <div class="item-qty">
-                    <button>-</button>
-                    <span>3</span>
-                    <button>+</button>
-                </div>
-                <div class="item-price">15,00 zł</div>
-                <button class="delete-btn">🗑️</button>
-            </div>
-
-            <div class="cart-item">
-                <img src="muffin.jpg" alt="Muffin Czekoladowy" />
-                <div class="item-info">
-                    <h3>Muffin Czekoladowy</h3>
-                    <p>120g</p>
-                </div>
-                <div class="item-qty">
-                    <button>-</button>
-                    <span>1</span>
-                    <button>+</button>
-                </div>
-                <div class="item-price">8,00 zł</div>
-                <button class="delete-btn">🗑️</button>
-            </div>
+            <?php if (empty($cartItems)): ?>
+                <p>Twój koszyk jest pusty.</p>
+            <?php else: ?>
+                <?php foreach ($cartItems as $item): ?>
+                    <?php $product = $item['product']; ?>
+                    <div class="cart-item">
+                        <img src="/public/images/<?= $product->getImage(); ?>" alt="<?= $product->getName(); ?>" width="100">
+                        <h3><?= $product->getName(); ?></h3>
+                        <p>Ilość: <?= $item['quantity']; ?></p>
+                        <p>Cena: <?= number_format($item['quantity'] * $product->getPrice(), 2); ?> zł</p>
+                    </div>
+                    <hr>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </section>
 
         <aside class="summary">
             <h3>Podsumowanie</h3>
+            <?php
+            $subtotal = 0;
+            $shippingCost = 10.00;
+
+            if (!empty($cartItems)) {
+                foreach ($cartItems as $item) {
+                    $product = $item['product'];
+                    $subtotal += $item['quantity'] * $product->getPrice();
+                }
+            }
+
+            $total = $subtotal + $shippingCost;
+            ?>
             <div class="summary-row">
                 <span>Suma częściowa</span>
-                <span>35,00 zł</span>
+                <span><?= number_format($subtotal, 2, ',', '') ?> zł</span>
             </div>
             <div class="summary-row">
                 <span>Dostawa</span>
-                <span>10,00 zł</span>
+                <span><?= number_format($shippingCost, 2, ',', '') ?> zł</span>
             </div>
             <div class="summary-total">
                 <strong>Razem</strong>
-                <strong>45,00 zł</strong>
+                <strong><?= number_format($total, 2, ',', '') ?> zł</strong>
             </div>
             <button class="checkout-btn">Przejdź do kasy</button>
         </aside>
+
     </main>
 
 </body>

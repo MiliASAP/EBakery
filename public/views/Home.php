@@ -20,8 +20,7 @@
             <h3>EBakery</h3>
         </div>
         <div class="navigation-el">
-            <a href="">Strona główna</a>
-            <a href="">Produkty</a>
+            <a href=http://localhost:8080/homePage>Strona główna</a>
             <a href="">O nas</a>
             <a href="">Kontakt</a>
         </div>
@@ -53,11 +52,14 @@
                     </g>
                 </g>
             </svg>
-            <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
-                <path
-                    d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
-                    stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+            <a href=http://localhost:8080/cart>
+                <svg xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 24 24" fill="none">
+                    <path
+                        d="M6.29977 5H21L19 12H7.37671M20 16H8L6 3H3M9 20C9 20.5523 8.55228 21 8 21C7.44772 21 7 20.5523 7 20C7 19.4477 7.44772 19 8 19C8.55228 19 9 19.4477 9 20ZM20 20C20 20.5523 19.5523 21 19 21C18.4477 21 18 20.5523 18 20C18 19.4477 18.4477 19 19 19C19.5523 19 20 19.4477 20 20Z"
+                        stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+
+                </svg>
+            </a>
         </div>
     </nav>
     <section class="under-nav">
@@ -66,21 +68,40 @@
                 prosto z pieca</h1>
             <span>Odkryj smak tradycyjnego, rzemieślniczego pieczywa wypiekanego z pasją i najlepszych
                 składników</span>
-            <button>Zamów teraz</button>
+            <button id="scroll-down">Zamów teraz</button>
         </article>
         <img src="public/images/Home-pic.jpg" alt="">
     </section>
     <section class="filters-prod-promo">
         <nav class="filters">
-            <button>Wszystkie</button>
-            <button>Chleby</button>
-            <button>Bułki</button>
-            <button>Słodkie</button>
-            <button>Bezglutenowe</button>
+            <button data-filter="all">Wszystkie</button>
+            <button data-filter="bread">Chleby</button>
+            <button data-filter="roll">Bułki</button>
+            <button data-filter="sweet">Słodkie</button>
+            <button data-filter="gluten-free">Bezglutenowe</button>
         </nav>
-        <div class="products">
+        <div class="products-container">
+            <?php if (!empty($products) && is_array($products)): ?>
+                <?php foreach ($products as $product): ?>
+                    <a style="text-decoration: none; color: inherit;" href=http://localhost:8080/more/<?php echo htmlspecialchars($product->getId()); ?>>
+                        <div class="product-item" data-category="<?php echo htmlspecialchars($product->getCategory()); ?>">
+                            <div class="prod-imag">
+                                <img src="/public/images/<?php echo htmlspecialchars($product->getImage()); ?>"
+                                    alt="<?php echo htmlspecialchars($product->getName()); ?>">
+                            </div>
 
+                            <h3><?php echo htmlspecialchars($product->getName()); ?></h3>
+                            <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
+                            <div class="btn-price">
+                                <p><strong><?php echo number_format($product->getPrice(), 2, ',', ' '); ?> zł</strong></p>
+                                <button data-product-id="<?= $product->getId() ?>" class="AddToCart">Dodaj do koszyka</button>
+                            </div>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
+
         <section class="promotion-info">
             <div class="ingredients">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="800px"
