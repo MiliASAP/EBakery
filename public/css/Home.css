@@ -82,6 +82,26 @@ html {
     transform: scale(1.25);
 }
 
+.amntNotification {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  z-index: 10; /* nad SVG */
+  font-weight: bold;
+}
+.cartLogo {
+  position: relative;
+}
+
+
 .under-nav {
     display: flex;
     background-color: #f7f2e8;

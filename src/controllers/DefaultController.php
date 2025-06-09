@@ -7,7 +7,6 @@ require_once __DIR__ . '/../repository/CartRepository.php';
 
 class DefaultController extends AppController
 {
-
    public function login()
    {
       $this->render('Login');
@@ -15,6 +14,9 @@ class DefaultController extends AppController
 
    public function homePage()
    {
+      session_start();
+      $this->checkAuth();
+
       $productRepository = new ProductRepository();
       $products = $productRepository->getAllProducts();
 
@@ -23,10 +25,10 @@ class DefaultController extends AppController
 
    public function cart()
    {
-      $userId = 1; // Tymczasowy, docelowo z sesji
+      $this->checkAuth();
 
+      $userId = $_SESSION['user_id'];
       $cartRepository = new CartRepository();
-
       $cartItems = $cartRepository->getCartItemsByUserId($userId);
 
       $this->render('Cart', ['cartItems' => $cartItems]);
@@ -34,6 +36,8 @@ class DefaultController extends AppController
 
    public function more(int $id)
    {
+      $this->checkAuth();
+
       $productRepository = new ProductRepository();
       $product = $productRepository->getProductById($id);
 
@@ -44,5 +48,16 @@ class DefaultController extends AppController
       }
 
       $this->render('More', ['product' => $product]);
+   }
+
+   public function account()
+   {
+      $this->checkAuth();
+      $userId = $_SESSION['user_id'];
+      $userRepository = new UserRepository();
+
+      $user = $userRepository->getUserById($userId);
+
+      $this->render('Account', ['user' => $user]);
    }
 }

@@ -82,6 +82,26 @@ html {
     transform: scale(1.25);
 }
 
+.amntNotification {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  z-index: 10; 
+  font-weight: bold;
+}
+
+.cartLogo {
+  position: relative;
+}
+
 .cart-count {
     background: orange;
     color: white;
@@ -100,6 +120,7 @@ html {
 
 .cart-items {
     flex: 2;
+    
 }
 
 .cart-items h2 {
@@ -112,29 +133,45 @@ html {
 }
 
 .cart-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    border-bottom: 1px solid #eee;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
 }
 
 .cart-item img {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
-    object-fit: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.fromCartToMore {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: inherit;
+  flex-grow: 1; 
+  padding: 1rem 0;
 }
 
 .item-info h3 {
-    font-size: 1rem;
-    margin-bottom: 0.2rem;
+  margin: 0 0 0.2rem 0;
+  font-size: 1rem;
 }
 
 .item-info p {
-    color: #666;
-    font-size: 0.9rem;
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
 }
+
 
 .item-qty {
     display: flex;
@@ -205,3 +242,22 @@ html {
     border-radius: 6px;
     cursor: pointer;
 }
+
+.trashcan {
+  margin-left: auto; 
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+.trashcan svg {
+  width: 24px;
+  height: 24px;
+  stroke: #1C274C;
+
+}
+
+.trashcan:hover svg {
+    transform: scale(1.25);
+}
+

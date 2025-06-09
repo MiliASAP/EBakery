@@ -6,42 +6,117 @@ require_once "src/controllers/CartController.php";
 
 class Routing
 {
-    public static $routes;
+    private static array $routes = [];
 
-    public static function get($url, $view)
+    public static function get(string $url, string $controllerMethod)
     {
-        self::$routes[$url] = $view;
+        self::$routes['GET:' . $url] = $controllerMethod;
     }
 
-    public static function post($url, $view)
+    public static function post(string $url, string $controllerMethod)
     {
-        self::$routes[$url] = $view;
+        self::$routes['POST:' . $url] = $controllerMethod;
     }
 
-    public static function run($url)
+    public static function delete(string $url, string $controllerMethod)
     {
+        self::$routes['DELETE:' . $url] = $controllerMethod;
+    }
+
+    public static function put(string $url, string $controllerMethod)
+    {
+        self::$routes['PUT:' . $url] = $controllerMethod;
+    }
+
+    public static function run(string $url)
+    {
+        $method = $_SERVER['REQUEST_METHOD'];
+        $url = trim($url, '/');
+
         if ($url === '') {
-            $url = 'homePage';  // lub 'login' jeśli chcesz
+            if ($method === 'GET' || $method === 'POST') {
+                $controller = new SecurityController();
+                $controller->login();
+                return;
+            } else {
+                http_response_code(405);
+                echo "Method not allowed";
+                return;
+            }
         }
 
-        if (!array_key_exists($url, self::$routes)) {
-            die("Wrong url!!");
+        $routeKey = $method . ':' . $url;
+
+        if (isset(self::$routes[$routeKey])) {
+            $controllerMethod = self::$routes[$routeKey];
+            [$controllerName, $methodName] = explode('@', $controllerMethod);
+
+            if (!class_exists($controllerName)) {
+                http_response_code(500);
+                echo "Controller $controllerName does not exist";
+                return;
+            }
+
+            $controller = new $controllerName();
+
+            if (!method_exists($controller, $methodName)) {
+                http_response_code(500);
+                echo "Method $methodName does not exist in controller $controllerName";
+                return;
+            }
+
+            $controller->$methodName();
+            return;
         }
 
-        $controllerName = self::$routes[$url];
-        $controller = new $controllerName;
+        foreach (self::$routes as $route => $controllerMethod) {
+            [$routeMethod, $routePath] = explode(':', $route, 2);
 
-        // Metoda to ostatni segment URL
-        $segments = explode('/', $url);
-        $method = end($segments);
+            if ($routeMethod !== $method)
+                continue;
 
-        // Sprawdź czy metoda istnieje, jeśli nie - domyślna
-        if (!method_exists($controller, $method)) {
-            $method = 'homePage';  // albo inna domyślna metoda
+            $routeParts = explode('/', $routePath);
+            $urlParts = explode('/', $url);
+
+            if (count($routeParts) === count($urlParts)) {
+                $params = [];
+                $matched = true;
+                for ($i = 0; $i < count($routeParts); $i++) {
+                    if (preg_match('/^{\w+}$/', $routeParts[$i])) {
+
+                        $params[] = $urlParts[$i];
+                    } else if ($routeParts[$i] !== $urlParts[$i]) {
+                        $matched = false;
+                        break;
+                    }
+                }
+
+                if ($matched) {
+                    [$controllerName, $methodName] = explode('@', $controllerMethod);
+
+                    if (!class_exists($controllerName)) {
+                        http_response_code(500);
+                        echo "Controller $controllerName does not exist";
+                        return;
+                    }
+
+                    $controller = new $controllerName();
+
+                    if (!method_exists($controller, $methodName)) {
+                        http_response_code(500);
+                        echo "Method $methodName does not exist in controller $controllerName";
+                        return;
+                    }
+
+                    call_user_func_array([$controller, $methodName], $params);
+                    return;
+                }
+            }
         }
 
-        // Nie obsługujemy teraz parametrów URL, więc po prostu wywołaj metodę
-        $controller->$method();
+        http_response_code(404);
+        echo "404 Not Found - route not defined for $method $url";
     }
 
 }
+

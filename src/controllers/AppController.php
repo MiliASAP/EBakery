@@ -1,24 +1,23 @@
 <?php
-class AppController{
+class AppController
+{
     private $request;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->request = $_SERVER['REQUEST_METHOD'];
+
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
-    protected function isGet():bool
+    protected function render(string $template = null, array $variables = [])
     {
-        return $this->request === "GET";
-    }
-    protected function isPost():bool
-    {
-        return $this->request === "POST";
-    }
-    protected function render(string $template = null, array $variables = []){
-        $templatePath = 'public/views/'.$template.'.php';
+        $templatePath = 'public/views/' . $template . '.php';
         $output = 'File not found';
 
-        if(file_exists($templatePath)){
+        if (file_exists($templatePath)) {
             extract($variables);
 
             ob_start();
@@ -27,5 +26,14 @@ class AppController{
         }
 
         print $output;
+    }
+
+    protected function checkAuth(): void
+    {
+        session_start();
+        if (!isset($_SESSION['user_id']) || !isset($_SESSION['email'])) {
+            header('Location: /login');
+            exit();
+        }
     }
 }

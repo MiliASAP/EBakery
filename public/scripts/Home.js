@@ -11,6 +11,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  const defaultButton = filterButtons[0];
+  defaultButton.classList.add("active");
+  const defaultFilter = defaultButton.getAttribute("data-filter");
+
+  productItems.forEach((item) => {
+    const categories = item.getAttribute("data-category").split(",");
+    if (defaultFilter === "all" || categories.includes(defaultFilter)) {
+      item.style.display = "flex";
+    } else {
+      item.style.display = "none";
+    }
+  });
+
   filterButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const filter = button.getAttribute("data-filter");
@@ -35,16 +48,16 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
 
       const productId = button.getAttribute("data-product-id");
-      console.log("Kliknięto button");
       fetch("/cart/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ productId: Number(productId) }),
+        body: JSON.stringify({ productId: Number(productId), quantity: 1 }),
       })
         .then((response) => response.json())
         .then((data) => {
           if (data.success) {
-            alert("Produkt dodany do koszyka!");
+            // alert("Produkt dodany do koszyka!");
+            window.updateSummary();
           } else {
             alert("Błąd: " + data.message);
           }
@@ -52,4 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
         .catch(() => alert("Błąd sieci"));
     });
   });
+
+  if (document.getElementById("summary-subtotal")) {
+    window.updateSummary();
+  }
 });

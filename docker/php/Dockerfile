@@ -29,5 +29,9 @@ RUN apk add --no-cache --virtual .build-deps $BUILD_DEPS \
 
 RUN apk add --no-cache --virtual .run-deps $RUN_DEPS
 
+RUN mkdir -p /tmp && chmod 777 /tmp
+
+COPY docker/php/custom.ini /usr/local/etc/php/conf.d/
+
 COPY . /app
 VOLUME [ "/app" ]

@@ -31,10 +31,10 @@
                     <div id="login-tab" class="tab active">Logowanie</div>
                     <div id="register-tab" class="tab">Rejestracja</div>
                 </nav>
-                <form id="auth-form" action="login" method="POST">
+                <form id="auth-form" action="/login" method="POST">
                     <div class="messages">
-                        <?php if(isset($messages)){
-                            foreach($messages as $message){
+                        <?php if (isset($messages)) {
+                            foreach ($messages as $message) {
                                 echo $message;
                             }
                         }
@@ -42,7 +42,12 @@
                     </div>
                     <section class="hidden" id="name">
                         <span>Imię</span>
-                        <input name="name" type="name" placeholder="Imię">
+                        <input name="name" type="text" placeholder="Imię">
+                    </section>
+
+                    <section class="hidden" id="surname">
+                        <span>Nazwisko</span>
+                        <input name="surname" type="text" placeholder="Nazwisko">
                     </section>
 
                     <section>
@@ -59,11 +64,6 @@
                     <section id="repeat-password" class="hidden">
                         <span>Powtórz hasło</span>
                         <input name="password-rep" type="password" placeholder="Powtórz hasło">
-                    </section>
-
-                    <section class="row">
-                        <label><input type="checkbox"> Zapamiętaj mnie</label>
-                        <a href="#">Zapomniałeś hasła?</a>
                     </section>
 
                     <button type="submit" id="submit-btn">Zaloguj się</button>

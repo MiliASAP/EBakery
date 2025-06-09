@@ -2,15 +2,21 @@
 
 require 'Routing.php';
 
-$path = trim($_SERVER['REQUEST_URI'], '/');
-$path = parse_url($path, PHP_URL_PATH);
+$path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$path = trim($path, '/');
 
-Routing::get('', 'DefaultController');
-Routing::get('homePage', 'DefaultController');
-Routing::post('login', 'SecurityController');
-Routing::get('cart', 'DefaultController');
-Routing::get('more', 'DefaultController');
-Routing::post('cart/add', 'CartController');
+
+Routing::get('homePage', 'DefaultController@homePage');
+Routing::get('login', 'DefaultController@login');
+Routing::post('login', 'SecurityController@login');
+Routing::post('register', 'SecurityController@register');
+Routing::get('cart', 'DefaultController@cart');
+Routing::get('more/{id}', 'DefaultController@more');
+Routing::post('cart/add', 'CartController@add');
+Routing::delete('cart/delete', 'CartController@delete');
+Routing::get('cart/summary', 'CartController@summary');
+Routing::get('account', 'DefaultController@account');
+Routing::post('logout', 'SecurityController@logout');
 
 
 Routing::run($path);

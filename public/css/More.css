@@ -1,0 +1,386 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    background-color: #fff;
+    margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; 
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    padding-left: 50px;
+    padding-right: 50px;
+    height: auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo>img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+    vertical-align: middle;
+    display: inline-block;
+    margin-right: 3px;
+    transform: translateY(-3.5px);
+}
+
+.logo>h3 {
+    font-size: 1.2rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-weight: 900;
+    color: brown;
+}
+
+.navigation-el {
+    display: flex;
+    gap: 30px;
+
+}
+
+.navigation-el a {
+    text-decoration: none;
+    text-align: center;
+    color: gray;
+    padding: 14px 16px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.navigation-el a:hover {
+    color: black;
+    transform: scale(1.25);
+
+}
+
+.icons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.icons svg {
+    height: 20px;
+    width: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.icons svg:hover {
+    cursor: pointer;
+    transform: scale(1.25);
+}
+
+.amntNotification {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 20px;
+  z-index: 10; 
+  font-weight: bold;
+}
+
+.cartLogo {
+  position: relative;
+}
+
+.addToCart svg{
+      height: 20px;
+    width: 20px;
+}
+
+.Details {
+  display: flex;
+  gap: 3rem;
+  padding: 2rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+
+.Details img {
+  width: 50vw;         
+  min-width: 300px;    
+  max-width: 1000px;     
+  height: auto;         
+  border-radius: 1rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+
+.Details > div {
+  flex: 1;
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.right{
+    align-self: center;
+    display: block;
+}
+
+.infoDesc h1{
+    padding-bottom: 10px;
+}
+
+.name{
+  margin-bottom: 70px;
+  font-size: 50px;
+}
+.infoDesc span{
+   display: inline-block;
+ padding-bottom: 30px;
+}
+.nutritions h3{
+  width: 100%;
+  display: block;
+  text-align: left; 
+}
+
+.nutritions{
+    background-color: #f7f2e8;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
+.nutritions section{
+  display: flex;
+  gap: 30px;
+  text-align: left;
+}
+.l{
+    display: flex;
+    flex-direction: column;
+}
+.r{
+    display: flex;
+    flex-direction: column;
+}
+
+.amount{
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.amount input{
+  width: 20px;
+}
+.minus,.plus{
+width: 30px;
+height: 30px;
+border-radius: 70px;
+border-style: none;
+padding: 7.5px;
+background-color: #FDE68A;
+transition: transform 0.3s ease-in-out;
+}
+
+.minus:hover, .plus:hover {
+  transform: scale(1.25);
+  transition: transform 0.3s ease-in-out;
+} 
+
+.minus:active, .plus:active {
+  transform: scale(1);
+  transition: transform 0.01s ease-in-out;
+}
+
+.amount svg{
+  height: 15px;
+  width: 15px;
+}
+.addToCart{
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+.addToCart svg{
+ margin-left: 3px;
+}
+
+footer {
+    background-color: #78350F;
+    display: flex;
+    flex-direction: column;
+}
+
+.Info {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: solid 1px #843e15;
+    gap: 2px;
+    border-top: #78350F 5px solid;
+}
+
+.Company-Info {
+    display: flex;
+    flex-direction: column;
+}
+
+.head,
+.Social-Media>span,
+.Contact>span {
+    color: white;
+    font-weight: 900;
+    margin-left: 0;
+    margin-top: 0;
+}
+
+.Contact>ul {
+    list-style-type: none;
+    padding-top: 15px;
+}
+
+.Contact>ul li {
+    margin-bottom: 5px;
+}
+
+.main,
+.Contact>ul {
+    font-size: 11px;
+    margin: 0;
+    color: #FDE68A;
+}
+
+.Social-Media {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.fb {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.insta {
+    width: 26px;
+    height: 26px;
+    margin-top: 2px;
+    margin-left: -2px;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.pin {
+    width: 22px;
+    height: 22px;
+    margin-right: 4px;
+    margin-top: 4px;
+    color: #FDE68A;
+    filter: brightness(0) saturate(100%) invert(93%) sepia(49%) saturate(684%) hue-rotate(334deg) brightness(105%) contrast(96%);
+}
+
+.svgs {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.rights {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f7f2e8;
+    font-size: 8px;
+    margin: 10px;
+}
+
+@media (max-width: 1024px) {
+  .navigation {
+    padding-left: 20px;
+    padding-right: 20px;
+    gap: 20px;
+  }
+
+  .Details {
+     flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+    padding: 1.5rem;
+  }
+
+  .Details img {
+    width: 60vw;
+    max-width: 600px;
+    min-width: 250px;
+  }
+
+  .Details > div {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body, html {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .navigation {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+    gap: 15px;
+  }
+
+  .navigation-el {
+    gap: 15px;
+  }
+
+  .Details {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .Details img {
+    width: 90vw;
+    max-width: 400px;
+    min-width: auto;
+    margin-bottom: 1rem;
+  }
+
+  .Details > div {
+    max-width: 90vw;
+    font-size: 0.95rem;
+  }
+}
