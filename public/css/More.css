@@ -348,23 +348,63 @@ footer {
 
 @media (max-width: 768px) {
   body, html {
-    padding-left: 10px;
-    padding-right: 10px;
+     padding-left: 10px;
+  padding-right: 10px;
   }
 
-  .navigation {
+ .navigation {
     flex-direction: column;
     align-items: center;
-    padding-left: 10px;
-    padding-right: 10px;
-    gap: 15px;
+    gap: 10px;
   }
 
   .navigation-el {
-    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .navigation-el a {
+  display: block;
+  width: 100%; 
+  text-align: center;
+}
+
+  .icons {
+    justify-content: center;
   }
 
   .Details {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
+  .Details img {
+    width: 100%;
+    max-width: 90vw;
+    height: auto;
+  }
+
+  .Details > div {
+    text-align: left;
+    max-width: 100%;
+    font-size: 1rem;
+  }
+
+  .name {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  .nutritions section {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .l, .r {
+    width: 100%;
+  }
+  .Info {
     flex-direction: column;
     align-items: center;
     text-align: center;
@@ -372,15 +412,21 @@ footer {
     padding: 1rem;
   }
 
-  .Details img {
-    width: 90vw;
-    max-width: 400px;
-    min-width: auto;
-    margin-bottom: 1rem;
+  .Company-Info, .Social-Media, .Contact {
+    width: 100%;
+  }
+  .Social-Media{
+     display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  .Details > div {
-    max-width: 90vw;
-    font-size: 0.95rem;
+  .svgs {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .rights {
+    font-size: 10px;
   }
 }
